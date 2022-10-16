@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:11.5-alpine
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./init_db.sql:/docker-entrypoint-initdb.d/init.sql
+  fluentd:
+    container_name: fluentd
+    image: fluentd
+  flask-app:
+    container_name: flask
+    build: .
+    ports:
+    - "5000:5000"
+    depends_on:
+    - postgres
+    - fluentd

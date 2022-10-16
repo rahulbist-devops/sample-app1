@@ -1,0 +1,4 @@
+flask
+fluent-logger
+psycopg2
+sqlalchemy
